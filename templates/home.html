@@ -1,0 +1,45 @@
+<!-- This is a Jinja2 Template that extends layout.html
+Implements a simple Bootstrap 5 form submission interface for YOLOv5 detection.
+-->
+
+
+
+{% block content %}
+<div class="m-2">
+
+  <hr/>
+
+    <div class="my-2">
+      <!-- <img src="https://i.imgur.com/jx43Frh.jpg" width="200" height="300"> -->
+      <img src="{{ url_for('video_feed') }}" width="600" height="750">
+
+    <!-- <thead>
+      <tr>
+        <th>Class</th>
+
+        <th>Bounding Box [x1, y1, x2, y2]</th>
+
+        <th>Confidence</th>
+
+        <th>Result</th>
+      </tr>
+    </thead>
+      {% for bbox in bbox_list %}
+        <tr>
+          <td>{{ bbox['class_name'] }}</td>
+          <td>{{ bbox['bbox'] }}</td>
+          <td>{{ bbox['confidence'] }}</td>
+          <td>{{ bbox['result'] }}</td>
+
+        </tr>
+      {% endfor %} -->
+        
+    </div>
+    <div class="my-2">
+      <!-- <img src="https://i.imgur.com/rl43qwo.jpg" width="200"height="300"> -->
+    </div>
+
+    
+</div>
+
+{% endblock %}
