@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, StreamingResponse
 import uvicorn
 from camera_single import Camera
-import random
+import random, os
 from fastapi.staticfiles import StaticFiles
 
 
@@ -46,7 +46,8 @@ async def video_feed():
                     media_type='multipart/x-mixed-replace; boundary=frame')
 
     
-
+if not os.path.exists('../photograph'):
+    os.makedirs('../photograph')
 app.mount("/photograph", StaticFiles(directory="../photograph"), name="photograph")
 
     
