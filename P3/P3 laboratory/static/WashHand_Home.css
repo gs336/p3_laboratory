@@ -1,0 +1,83 @@
+.bg{
+    height:100%;
+    width:100%;
+    position:fixed;
+    background-color: #e0e0e0;
+
+}
+
+/*-------------------------------------------------------------------------------------------*/
+
+.Img_f{
+    position:fixed;
+    left: 9%;
+    width: 22vw;
+    height: 43.5vh;
+    margin-top: 4vh;
+    /*margin-left: 15vw;
+    margin-right: 15vw;*/
+    border:0.4vw solid #ffffff;
+    border-radius: 0.5vw;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 50%),0 8px 16px rgb(0 0 0 / 10%);
+    background-color: #ffffff;
+}
+
+
+/*-------------------------------------------------------------------------------------------*/
+
+.Img_b{
+    position:fixed;
+    left: 9%;
+    width: 22vw;
+    height: 43.5vh;
+    margin-top: 52.5vh;
+    /*margin-left: 15vw;
+    margin-right: 15vw;*/
+    border:0.4vw solid #ffffff;
+    border-radius: 0.5vw;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 50%),0 8px 16px rgb(0 0 0 / 10%);
+    background-color: #ffffff;
+}
+
+
+/*-------------------------------------------------------------------------------------------*/
+
+.Webcam{
+    position:fixed;
+    left: 33.5%;
+    width: 30vw;
+    height: 92vh;
+    margin-top: 4vh;
+    /*margin-left: 15vw;
+    margin-right: 15vw;*/
+    border:0.4vw solid #ffffff;
+    border-radius: 0.5vw;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 50%),0 8px 16px rgb(0 0 0 / 10%);
+    background-color: #ffffff;
+}
+
+/*-------------------------------------------------------------------------------------------*/
+
+.Info{
+    position:fixed;
+    left: 66%;
+    width: 23.5vw;
+    height: 92vh;
+    margin-top: 4vh;
+    /*margin-left: 15vw;
+    margin-right: 15vw;*/
+    border:0.4vw solid #ffffff;
+    border-radius: 0.5vw;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 50%),0 8px 16px rgb(0 0 0 / 10%);
+    background-color: #ffffff;
+}
+
+.Info_d{
+
+    position:relative;
+    left: 2vw;
+    top: 25vh;
+    width: 18vw;
+}
+
+
