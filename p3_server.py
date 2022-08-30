@@ -14,15 +14,6 @@ templates = Jinja2Templates(directory = 'templates')
 
 colors = [tuple([random.randint(0, 255) for _ in range(3)]) for _ in range(100)] #for bbox plotting
 app.mount('/static',StaticFiles(directory='static'),name='static')
-@app.get("/")
-def home(request: Request):
-    ''' Returns html jinja2 template render for home page form
-    '''
-
-    return templates.TemplateResponse('WashHand_Home.html', {
-            "request": request
-           
-        })
 
 
 @app.get("/", response_class=HTMLResponse)
