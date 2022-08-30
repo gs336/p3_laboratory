@@ -1,0 +1,13 @@
+People
+Headgear
+Bilayer glove
+Shoe cover
+Mask
+Protective clothing
+Respirator
+Air pipe
+Not dressed shoe cover
+Wrong location with respirator
+Not dressed bilayer glove
+Not dressed protective clothing
+Not dressed headgear
