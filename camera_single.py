@@ -51,7 +51,7 @@ class Camera():
         results=pose.process(image1)
         #image=cv2.resize(image,(640,480),interpolation=cv2.INTER_AREA)
         
-        if self.n==0:
+        if self.n==0:#n=0時間就會一直刷新
             localtime=time.localtime()
             detect.t=time.strftime('%Y%m%d_%H%M%S',localtime)
 
@@ -59,47 +59,45 @@ class Camera():
             #mp_drawing.draw_landmarks(image,results.pose_landmarks,conn,drawing_spece1,drawing_spece2)#顯使骨架
 
             for i in results.pose_landmarks.landmark:
-                if i.visibility>=0.5 and i.visibility <1:
-                    self.body=self.body+1
+                #visibility=偵測到的特徵點數目/33
+                if i.visibility>=0.5 and i.visibility <1:#visibility大於0.5開始累加參數
+                    self.body=self.body+1#若FPS為10，偵測到的特徵點數目為33，body每秒就會加330
                     
                 else:
-                    self.body=0
-        if self.body>1010 and self.body<1040:
-           self.a=1
-           self.sec=6
+                    self.body=0#若累加途中visibility降至0.5以下body直接歸0
+        if self.body>1010 and self.body<1040:#當body累加至1010與1040間(大約累加2~3秒)
+           self.a=1#a=1即達成倒數計時的其中一個條件
+           self.sec=6#sec預設為6
            
            
-        if self.a==0:
-            pass
-                
-        else:
-            if self.body>=1000:
-                self.sec=self.sec-0.05
-                putText(image,10,70,str(int(self.sec)))  
-                if self.sec<1:
-                    self.a=self.a-0.25
-                    if self.a<=0:
-                        self.a=0
-                        self.n=self.n+1
-                        self.body=100   
-                        
-                        if self.n==1:
-                            os.mkdir('../photograph'+'/'+f'{detect.t}')
-                            cv2.imwrite('../photograph'+'/'+detect.t+'/'+f'photo-{self.n}.jpg', image)
-            
-                        else:
-                            cv2.imwrite('../photograph'+'/'+detect.t+'/'+f'photo-{self.n}.jpg', image)
-    
-                        putText(image, 10, 70,'Save OK')   # 存檔
-                        print('save ok') 
+        if self.a!=0 and self.body>=1000:#兩個條件都達到就會開始倒數計時
 
-                        if self.n==2:
-                            
-                            ###啟動detect
-                            opt = detect.parse_opt()
-                            detect.main(opt)  
-                            ###
-                            self.n=0             
+            self.sec=self.sec-0.05#根據效能調整
+            putText(image,10,70,str(int(self.sec)))#秒數顯示於營幕上
+            if self.sec<1:
+                self.a=self.a-0.25
+                if self.a<=0:
+                    self.a=0
+                    self.n=self.n+1#n變成一後就不會累加時間
+                    self.body=100   
+                    
+                    if self.n==1:
+                        os.mkdir('../photograph'+'/'+f'{detect.t}')
+                        cv2.imwrite('../photograph'+'/'+detect.t+'/'+f'photo-{self.n}.jpg', image)
+        
+                    else:
+                        cv2.imwrite('../photograph'+'/'+detect.t+'/'+f'photo-{self.n}.jpg', image)
+
+                    putText(image, 10, 70,'Save OK')   # 存檔
+                    print('save ok') 
+
+                    if self.n==2:
+                        
+                        ###啟動detect
+                        opt = detect.parse_opt()
+                        detect.main(opt)  
+                        ###
+                        self.n=0             
 
             else:
                 self.a=0
