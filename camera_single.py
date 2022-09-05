@@ -71,7 +71,7 @@ class Camera():
            
            
         if self.a!=0 and self.body>=1000:#兩個條件都達到就會開始倒數計時
-
+            
             self.sec=self.sec-0.05#根據效能調整
             putText(image,10,70,str(int(self.sec)))#秒數顯示於營幕上
             if self.sec<1:
@@ -99,10 +99,10 @@ class Camera():
                         ###
                         self.n=0             
 
-            else:
-                self.a=0
-                
-                pass
+        else:
+            self.a=0
+            
+            pass
         
         
         #print(self.body,'xxx',self.a)
