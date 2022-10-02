@@ -8,6 +8,8 @@ from camera_single import Camera
 import random
 from fastapi.staticfiles import StaticFiles
 import os
+import asyncio
+from datetime import datetime
 
 app = FastAPI()
 templates = Jinja2Templates(directory = 'templates')
@@ -28,6 +30,14 @@ def gen(camera):
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
+async def get_time():
+    while True:
+        now = datetime.now()
+        yield f'data: {now.strftime("%S")}\n\n'
+        #  if html used [addEventListener] & [event.data] to get data
+        #  id is 'id: '+f'{your id}'+'\n'
+        #  data must be 'data: '+f'{your data}'+'\n\n'
+        await asyncio.sleep(1)
 
 @app.get('/video_feed', response_class=HTMLResponse)
 async def video_feed():
@@ -35,12 +45,13 @@ async def video_feed():
     return  StreamingResponse(gen(Camera()),
                     media_type='multipart/x-mixed-replace; boundary=frame')
 
-    
+@app.get("/update")
+async def clock():
+    return StreamingResponse(get_time(),  media_type="text/event-stream")
+
 if not os.path.exists('../photograph'):
     os.makedirs('../photograph')
 app.mount("/photograph", StaticFiles(directory="../photograph"), name="photograph")
-
-    
 
 if __name__ == '__main__':
     import uvicorn
