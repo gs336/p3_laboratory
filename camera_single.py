@@ -46,7 +46,7 @@ class Camera():
 
         success, image = self.video.read()
         image = image[115:865,340:940]
-        # image = cv2.resize(image, (960, 640), interpolation=cv2.INTER_AREA)
+        #image = cv2.resize(image, (960, 640), interpolation=cv2.INTER_AREA)
         image1=cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
         results=pose.process(image1)
         #image=cv2.resize(image,(640,480),interpolation=cv2.INTER_AREA)
