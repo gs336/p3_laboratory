@@ -61,17 +61,17 @@ class Camera():
             for i in results.pose_landmarks.landmark:
                 print(F'[DEBUG] i.visibility: {i.visibility}; self.body: {self.body}')
                 #visibility=偵測到的特徵點數目/33
-                if i.visibility>=0.5 and i.visibility <1:#visibility大於0.5開始累加參數
+                if i.visibility>=0.1 and i.visibility <1:#visibility大於0.5開始累加參數
                     self.body=self.body+1#若FPS為10，偵測到的特徵點數目為33，body每秒就會加330
                     
                 else:
                     self.body=0#若累加途中visibility降至0.5以下body直接歸0
-        if self.body>1010 and self.body<1040:#當body累加至1010與1040間(大約累加2~3秒)
+        if self.body>=0 and self.body<1040:#當body累加至1010與1040間(大約累加2~3秒)
            self.a=1#a=1即達成倒數計時的其中一個條件
            self.sec=6#sec預設為6
            
            
-        if self.a!=0 and self.body>=1000:#兩個條件都達到就會開始倒數計時
+        if self.a!=0 and self.body>=0:#兩個條件都達到就會開始倒數計時
             
             self.sec=self.sec-0.05#根據效能調整
             putText(image,10,70,str(int(self.sec)))#秒數顯示於營幕上
