@@ -1,11 +1,12 @@
 import cv2
 import socket
 
-addr=('10.66.202.97',8066)
+# addr=('10.66.202.97',8066)
+addr=('127.0.0.1',8066)
 
 cap=cv2.VideoCapture(0)
-cap.set(3,1280)
-cap.set(4,960)
+# cap.set(3,1280)
+# cap.set(4,960)
 s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
 while True:

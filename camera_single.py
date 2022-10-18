@@ -19,16 +19,16 @@ mp_drawing = mp.solutions.drawing_utils
 mp_pose=mp.solutions.pose
 pose=mp_pose.Pose()
 conn=mp.solutions.pose.POSE_CONNECTIONS
-# drawing_spece1=mp_drawing.DrawingSpec(color=(255,255,255),thickness=3,circle_radius=3)#openpose 骨架顏色
-# drawing_spece2=mp_drawing.DrawingSpec(color=(255,255,0),thickness=3,circle_radius=3)#openpose 骨架顏色
+drawing_spece1=mp_drawing.DrawingSpec(color=(255,255,255),thickness=3,circle_radius=3)#openpose 骨架顏色
+drawing_spece2=mp_drawing.DrawingSpec(color=(255,255,0),thickness=3,circle_radius=3)#openpose 骨架顏色
 
-#UDP_URL='udp://10.66.203.119:8066'#server端ip位置 port自訂
+# UDP_URL='udp://127.0.0.1:8066'#server端ip位置 port自訂
 
 class Camera():
 
     def __init__(self):
         
-        #self.video = cv2.VideoCapture(UDP_URL,cv2.CAP_FFMPEG) #server接收client的影像
+        # self.video = cv2.VideoCapture(UDP_URL,cv2.CAP_FFMPEG) #server接收client的影像
         self.video = cv2.VideoCapture(0) #camera於server開啟
 
         self.video.set(3,1280)
@@ -56,9 +56,10 @@ class Camera():
             detect.t=time.strftime('%Y%m%d_%H%M%S',localtime)
 
         if results.pose_landmarks:
-            #mp_drawing.draw_landmarks(image,results.pose_landmarks,conn,drawing_spece1,drawing_spece2)#顯使骨架
+            mp_drawing.draw_landmarks(image,results.pose_landmarks,conn,drawing_spece1,drawing_spece2)#顯使骨架
 
             for i in results.pose_landmarks.landmark:
+                print(F'[DEBUG] i.visibility: {i.visibility}; self.body: {self.body}')
                 #visibility=偵測到的特徵點數目/33
                 if i.visibility>=0.5 and i.visibility <1:#visibility大於0.5開始累加參數
                     self.body=self.body+1#若FPS為10，偵測到的特徵點數目為33，body每秒就會加330
