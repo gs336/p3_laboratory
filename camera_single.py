@@ -38,6 +38,7 @@ class Camera():
         self.a=0
         self.n=0
         self.sec=6
+        self.prev_time = datetime.now()
         # self.t=float(time.strftime("%Y%m%d.%H%M%S"))
 
     def __del__(self):
@@ -60,8 +61,8 @@ class Camera():
             mp_drawing.draw_landmarks(image,results.pose_landmarks,conn,drawing_spece1,drawing_spece2)#顯使骨架
 
             for i in results.pose_landmarks.landmark:
-                print(F'[DEBUG] i.visibility: {i.visibility}; self.body: {self.body};self.prev_time:{self.prev_time}')
-                #visibility=偵測到的特徵點數目/33
+                # print(F'[DEBUG] i.visibility: {i.visibility}; self.body: {self.body};self.prev_time:{self.prev_time}')
+                # visibility=偵測到的特徵點數目/33
                 if i.visibility>=0.1 and i.visibility <1:#visibility大於0.5開始累加參數
                     self.body=self.body+1#若FPS為10，偵測到的特徵點數目為33，body每秒就會加330
                     
