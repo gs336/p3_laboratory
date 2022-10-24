@@ -38,7 +38,10 @@
 
                   <div>
 
-                      <p style="font-size: 2.5vh;">TODO: Not finish yet</p>
+                      <!--<p style="font-size: 2.5vh;">TODO: Not finish yet</p>-->
+                      <div id="show_result" class="time_cube">
+                      </div>
+                      <br>
                       <!--<div id="time"></div>-->
                       <div id="test" class="time_cube"></div>
                       <br>
@@ -53,6 +56,14 @@
                     var fruits = ["",""];      //Adjust the values in the array according to the quantity to be displayed
                     //fruits.push("event.data" + "\n\n");
                     var source = new EventSource('/update');
+                    source.addEventListener('message', function(event){
+                        const show_result = document.getElementById('show_result')
+                        show_result.innerHTML = "";
+                        console.log(JSON.stringify(event.data));
+                        show_result.innerHTML = event.data;
+                    }, false);
+
+                    /*
                     source.addEventListener('message' , function(event){
                         if (fruits.length === 3) {      //length:返回字符串的字符数
                             fruits.shift();             //shift():刪除數組中的第一個項目
@@ -72,7 +83,7 @@
                         }
                         document.getElementById("test2").innerHTML = 'Not dressed bilayer glove : ' + fruits[0] + '%';  //fruits[0]:可以提取Array指定的索引位置
                     }, false);
-
+                    */
                 </script>
 
               </div>

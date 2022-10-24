@@ -14,6 +14,8 @@ from datetime import datetime
 app = FastAPI()
 templates = Jinja2Templates(directory = 'templates')
 
+camera = Camera()
+
 #colors = [tuple([random.randint(0, 255) for _ in range(3)]) for _ in range(100)] #for bbox plotting
 app.mount('/static',StaticFiles(directory='static'),name='static')
 
@@ -31,18 +33,27 @@ def gen(camera):
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 async def get_time():
+    global camera
     while True:
         now = datetime.now()
-        yield f'data: {now.strftime("%S")}\n\n'
-        #  if html used [addEventListener] & [event.data] to get data
-        #  id is 'id: '+f'{your id}'+'\n'
-        #  data must be 'data: '+f'{your data}'+'\n\n'
-        await asyncio.sleep(1)
+        if camera.shooted_num == 1:
+            yield f'data: {now.strftime("%S")} 請轉身，將拍攝背面照片\n\n'
+            await asyncio.sleep(1)
+        elif camera.shooted_num == 2 and not camera.is_detected:
+            yield f'data: {now.strftime("%S")} 檢測中，請稍後...\n\n'
+            await asyncio.sleep(1)
+        elif camera.is_detected:
+            yield f'data: {camera.detected_result}\n\n'
+            await asyncio.sleep(1)
+        else:
+            yield f'data: {now.strftime("%S")}: 偵測目標中...\n\n'
+            await asyncio.sleep(1)
 
 @app.get('/video_feed', response_class=HTMLResponse)
 async def video_feed():
+    global camera
     """Video streaming route. Put this in the src attribute of an img tag."""
-    return  StreamingResponse(gen(Camera()),
+    return  StreamingResponse(gen(camera),
                     media_type='multipart/x-mixed-replace; boundary=frame')
 
 @app.get("/update")
