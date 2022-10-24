@@ -4,6 +4,7 @@ import detect
 import cv2
 import mediapipe as mp
 import time
+from datetime import datetime
 import os
 
 
@@ -59,23 +60,23 @@ class Camera():
             mp_drawing.draw_landmarks(image,results.pose_landmarks,conn,drawing_spece1,drawing_spece2)#顯使骨架
 
             for i in results.pose_landmarks.landmark:
-                print(F'[DEBUG] i.visibility: {i.visibility}; self.body: {self.body}')
+                print(F'[DEBUG] i.visibility: {i.visibility}; self.body: {self.body};self.prev_time:{self.prev_time}')
                 #visibility=偵測到的特徵點數目/33
                 if i.visibility>=0.1 and i.visibility <1:#visibility大於0.5開始累加參數
                     self.body=self.body+1#若FPS為10，偵測到的特徵點數目為33，body每秒就會加330
                     
                 else:
                     self.body=0#若累加途中visibility降至0.5以下body直接歸0
-        if self.body>=0 and self.body<1040:#當body累加至1010與1040間(大約累加2~3秒)
+        if self.body>=0 and self.body<25:#當body累加至1010與1040間(大約累加2~3秒)
            self.a=1#a=1即達成倒數計時的其中一個條件
            self.sec=6#sec預設為6
-           
+           self.prev_time = datetime.now()
            
         if self.a!=0 and self.body>=0:#兩個條件都達到就會開始倒數計時
             
-            self.sec=self.sec-0.05#根據效能調整
-            putText(image,10,70,str(int(self.sec)))#秒數顯示於營幕上
-            if self.sec<1:
+            self.timedalta = datetime.now() - self.prev_time
+            putText(image,10,70,str(int(self.timedalta.seconds)))#秒數顯示於營幕上
+            if self.timedalta.seconds >=5:
                 self.a=self.a-0.25
                 if self.a<=0:
                     self.a=0
