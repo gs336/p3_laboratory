@@ -37,16 +37,16 @@ async def get_time():
     while True:
         now = datetime.now()
         if camera.shooted_num == 1:
-            yield f'data: {now.strftime("%S")} 請轉身，將拍攝背面照片\n\n'
+            yield f'data: {now.strftime("%H:%M:%S")} 請轉身，將拍攝背面照片\n\n'
             await asyncio.sleep(1)
         elif camera.shooted_num == 2 and not camera.is_detected:
-            yield f'data: {now.strftime("%S")} 檢測中，請稍後...\n\n'
+            yield f'data: {now.strftime("%H:%M:%S")} 檢測中，請稍後...\n\n'
             await asyncio.sleep(1)
         elif camera.is_detected:
-            yield f'data: {camera.detected_result}\n\n'
+            yield f'data: {now.strftime("%H:%M:%S")} : <br>{camera.detected_result}\n\n'
             await asyncio.sleep(1)
         else:
-            yield f'data: {now.strftime("%S")}: 偵測目標中...\n\n'
+            yield f'data: {now.strftime("%H:%M:%S")}: 偵測目標中...\n\n'
             await asyncio.sleep(1)
 
 @app.get('/video_feed', response_class=HTMLResponse)
