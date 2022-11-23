@@ -60,7 +60,6 @@ class Camera():
         self.detected_result = ""
 
     def get_frame(self):
-
         _, origin_image = self.video.read()
         crop_image = origin_image[115:865, 340:940]
         crop_image_copy = crop_image.copy()
@@ -85,7 +84,7 @@ class Camera():
                     self.body = self.body + 1  # 若FPS為10，偵測到的特徵點數目為33，body每秒就會加330
                 else:
                     self.body = 0  # 若累加途中visibility降至0.5以下body直接歸0
-
+        print(f"[DEBUG] self.body: {self.body}; self.is_shooting: {self.is_shooting}")
         # 當body累加至1010與1040間(大約累加2~3秒)
         if self.body >= START_SHOOTING_THRES and not self.is_shooting:
             self.save_path = ''

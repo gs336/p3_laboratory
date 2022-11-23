@@ -57,7 +57,7 @@
                     //fruits.push("event.data" + "\n\n");
                     var source = new EventSource('/update');
                     source.addEventListener('message', function(event){
-                        const show_result = document.getElementById('show_result')
+                        const show_result = document.getElementById('show_result');
                         show_result.innerHTML = "";
                         console.log(JSON.stringify(event.data));
                         show_result.innerHTML = event.data;
