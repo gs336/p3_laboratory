@@ -16,6 +16,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-color: aliceblue;
+    border-style: solid;
+    border-width: 2px;
 }
 
 .test_img1 {
@@ -35,6 +38,9 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    border-color: aliceblue;
+    border-style: solid;
+    border-width: 2px;
 }
 
 .img_test_up {
@@ -58,17 +64,23 @@
 .middle_frame{
     width: 30vw;
     height:95%;
-    background-color: rgb(153, 251, 194);
+    background-color: rgb(0, 0, 0);
     border-radius: 10px;
     margin: 0 1vw 0 1vw;
+    border-color: aliceblue;
+    border-style: solid;
+    border-width: 2px;
 }
 
 .right_frame{
     width: 30vw;
     height:95%;
-    background-color: rgb(173, 153, 251);
+    background-color: beige;
     border-radius: 10px;
     margin: 0 1vw 0 0;
+    border-color: aliceblue;
+    border-style: solid;
+    border-width: 2px;
 }
 
 @media screen and (min-aspect-ratio:500/100) {
@@ -255,11 +267,11 @@
     max-width: 100%;
     font-size: 4vh;
     height: auto;
-    background-color: aquamarine;
-    border-radius: 5px;
+    background-color: rgb(41, 255, 184);
+    border-radius: 6px;
     transition: transform 0.5s;
 }
 
 .time_cube:hover {
-    transform: translate(0px, -8px);
+    transform: translate(0px, -3px);
 }
