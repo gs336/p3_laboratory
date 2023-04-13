@@ -1,24 +1,26 @@
 #from curses.ascii import HT
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, APIRouter, Depends
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, StreamingResponse
 import uvicorn
 from camera_single import Camera
 import random
 from fastapi.staticfiles import StaticFiles
+from routers import P3_router
 import os
 import asyncio
 from datetime import datetime
 
 app = FastAPI()
-templates = Jinja2Templates(directory = 'templates')
+router = APIRouter()
+
+templates = Jinja2Templates(directory ="templates")
+app.mount("/static",StaticFiles(directory="static"),name="static")
 
 camera = Camera()
 
 #colors = [tuple([random.randint(0, 255) for _ in range(3)]) for _ in range(100)] #for bbox plotting
-app.mount('/static',StaticFiles(directory='static'),name='static')
-
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):

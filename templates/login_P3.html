@@ -4,10 +4,10 @@
     <head>
         <meta charset="utf-8"/>
         <title>NHRI</title>
-        <link rel="stylesheet" href="{{ url_for('static',path='login_P3.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static',path='loginP3.css')}}">
     </head>
 
-    <body style="margin: 0; background-color: #ffffff;">
+    <body style="margin: 0; background-color: #f3f3f3;">
 
         <nav class="topbg"></nav>  <!--top white-->
 
@@ -19,9 +19,9 @@
 
                     <div>
 
-                        <div style="width: 258px; height:50px; margin-top: 2.2rem;display: flex;flex-direction: column; align-items: center;justify-content: center;margin-bottom: 0.5rem;">
-                            <form id="trgt" method="POST" action="/register">
-                            <button id="btn22" type="submit" class="btn btn2" style="width: 280px;height: 80px;font-size:25px; background-color: rgba(138, 255, 216, 0.794);"><b>進入P3實驗室辨識系統</b></button>
+                        <div style="width: 258px; height:120px; margin-top: 2.2rem;display: flex;flex-direction: column; align-items: center;justify-content: center;margin-bottom: 0.5rem;">
+                            <form id="trgt" method="POST" action="/into_P3">
+                            <button id="btn22" type="submit" class="btn btn2" style="width: 280px;height: 150px;font-size:25px; background-color: rgba(138, 255, 216, 0.794);"><b>進入P3實驗室辨識系統</b></button>
                             </form>
                         </div>
 
@@ -37,7 +37,7 @@
                                 <br/>
                                 <input type="password" name="password" value="admin" placeholder="請輸入密碼" style="width:180px; height:20px; font-size:20px;margin-top: 0.5rem;border-radius:10px;">
                                 <br/>
-                                <button id="btn11" type="submit" class="btn btn1 btn1h" type="button" style="width:188px; height:25px;font-size:15px;margin-top: 0.8rem;background-color: #b9eef89c;margin-bottom: 1.2rem;"><b>登入</b></button>
+                                <button id="btn11" type="submit" class="btn btn1 btn1h" type="button" style="width:188px; height:25px;font-size:15px;margin-top: 0.8rem;background-color: #cbf4fc9c;margin-bottom: 1.2rem;"><b>登入</b></button>
                             </form>
                         </div>
 
@@ -49,7 +49,7 @@
 
         </div>
 
-        <script src="{{ url_for('static',path='login_P3.js')}}"></script>
+        <script src="{{ url_for('static',path='loginP3.js')}}"></script>
 
     </body>
     
