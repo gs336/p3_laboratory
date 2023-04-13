@@ -1,0 +1,73 @@
+@keyframes homeAnima{
+    from{background-image:
+        url('Image/BGM.png');}
+        
+    to{background-image:  url('Image/NHRItitle.png'),
+        url('Image/NHRItext.png'),
+        url('Image/flower.png'),
+        url('Image/BGM.png'); }
+}
+
+body{
+    height: 98vh;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+
+.imgb{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+
+    border: #ffffff 2px solid;
+    border-radius: 30px;
+    box-shadow:inset 0px 0px 20px 1px rgba(255, 255, 224, 0.2),0px 0px 10px 10px rgba(255, 255, 255, 0.4);
+
+/*
+    background-image:  url('Image/NHRItitle.png'),
+                       url('Image/NHRItext.png'),
+                       url('Image/flower.png'),
+                       url('Image/BGM.png');
+                       */
+}
+
+.topbg{
+    height: 0rem;
+}
+
+.bg{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content:  center;
+    min-width: 1046px;
+    background-color: #ffffff;
+}
+
+.imgb-animation{
+    background-size: cover;
+    max-width: 100%;
+    align-items: center;
+    animation-name: homeAnima;
+    animation-duration: 2.9s;
+    animation-delay: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.loginbox{
+    display: flex;
+    justify-content:  center;
+    min-width: 300px;
+    margin: 4.2rem 1rem 3.6rem 35.8rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 50%),0 8px 16px rgb(0 0 0 / 10%);
+    background-color: ghostwhite;
+}
+
+.btn{
+    border: none;
+    border-radius: 6px;
+}
+

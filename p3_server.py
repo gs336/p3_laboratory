@@ -22,7 +22,7 @@ app.mount('/static',StaticFiles(directory='static'),name='static')
 
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
-   return templates.TemplateResponse('WashHand_Home.html', {"request": request})
+   return templates.TemplateResponse('login_P3.html', {"request": request})
 
 def gen(camera):
     """Video streaming generator function."""
